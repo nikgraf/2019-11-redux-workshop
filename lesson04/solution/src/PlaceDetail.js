@@ -1,7 +1,8 @@
 import React from "react";
 import { useParams, Link } from "react-router-dom";
+import { connect } from "react-redux";
 
-export default function Place(props) {
+function Place(props) {
   const { id } = useParams();
   const place = props.places.find(place => place.id === id);
   if (place) {
@@ -19,3 +20,9 @@ export default function Place(props) {
     </div>
   );
 }
+
+const mapStateToProps = state => ({
+  places: state.places
+});
+
+export default connect(mapStateToProps)(Place);

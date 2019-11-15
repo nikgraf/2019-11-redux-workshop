@@ -19,22 +19,8 @@ const store = createStore(
   composeEnhancers(applyMiddleware(thunk, logger))
 );
 
-function uuidv4() {
-  return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function(c) {
-    var r = (Math.random() * 16) | 0,
-      v = c === "x" ? r : (r & 0x3) | 0x8;
-    return v.toString(16);
-  });
-}
-
 function App() {
-  const [places, setPlaces] = useState(data.places);
   const [theme, setTheme] = useState("light");
-
-  const addPlace = place => {
-    const newPlace = { ...place, id: uuidv4() };
-    setPlaces([...places, newPlace]);
-  };
 
   return (
     <Provider store={store}>
@@ -43,12 +29,12 @@ function App() {
           <ThemeSwitcher />
           <Switch>
             <Route path="/place/:id">
-              <PlaceDetail places={places} />
+              <PlaceDetail />
             </Route>
             <Route path="/">
               <h1>Places</h1>
               <Places />
-              <AddForm addPlace={addPlace} />
+              <AddForm />
             </Route>
           </Switch>
         </ThemeContext.Provider>
