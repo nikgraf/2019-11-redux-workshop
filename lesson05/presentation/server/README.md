@@ -1,0 +1,6 @@
+## Setup
+
+```
+yarn
+yarn start
+```
